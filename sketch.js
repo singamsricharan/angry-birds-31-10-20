@@ -1,3 +1,50 @@
+// //examples on the different types of data in JS
+// //string
+// var string = "this is a string or text";
+// var string1 = "5";
+// console.log(string);
+// console.log(string1);
+
+// //number
+// var num = 1234509876;
+// console.log(num);
+
+// //Boolean - True or False
+// var bool = true
+// console.log(bool);
+
+// //undefined
+// var object;
+// console.log(object);
+
+// //reassign the same undefined object to a null value
+// //null
+// object = null;
+// console.log(object);
+
+// //examples of array
+
+// //an array holding some data
+// var array1 = [1,2,3,4,5];
+// console.log(array1);
+
+// var array2 = ["sricharan", 12, true];
+// console.log(array2);
+
+// //an array can store a list of arrays;
+// var array3 = [[1,2],[3,4],[5,6]];
+// //console.log(array3);
+
+// array3.push(array1);
+// console.log(array3);
+
+// array3.pop();
+// console.log(array3);
+
+// //access of values in array
+// //console.log(array3[1][0]);
+// //console.log(array3[3][2]);
+
 const Engine = Matter.Engine;
 const World= Matter.World;
 const Bodies = Matter.Bodies;
@@ -7,7 +54,7 @@ var engine, world;
 var box1, pig1,pig3;
 var backgroundImg,platform;
 var bird, slingshot;
-
+var gameState="play";
 
 function preload() {
     backgroundImg = loadImage("sprites/bg.png");
@@ -69,12 +116,15 @@ function draw(){
 }
 
 function mouseDragged(){
-    Matter.Body.setPosition(bird.body, {x: mouseX , y: mouseY});
+    if (gameState!=="launched"){
+        Matter.Body.setPosition(bird.body, {x: mouseX , y: mouseY});
+    }
 }
 
 
 function mouseReleased(){
     slingshot.fly();
+    gameState="launched"
 }
 
 function keyPressed(){
